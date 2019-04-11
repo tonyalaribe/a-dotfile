@@ -71,18 +71,17 @@ Plug 'tomasr/molokai'
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
+Plug 'brooth/far.vim'
 
 " go
 "" Go Lang Bundle
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 
-
 " html
-"" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'tpope/vim-haml'
-Plug 'mattn/emmet-vim'
+"Plug 'tpope/vim-haml'
+"Plug 'mattn/emmet-vim'
 
 
 " javascript
@@ -92,6 +91,18 @@ Plug 'jelera/vim-javascript-syntax'
 
 "*****************************************************************************
 "*****************************************************************************
+"GOcode deoplete-go
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+let g:deoplete#enable_at_startup = 1
+
+let g:deoplete#sources#go#gocode_binary = '/Users/a.alaribe/go/bin/gocode'
 
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
