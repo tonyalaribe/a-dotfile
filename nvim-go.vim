@@ -62,8 +62,8 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 "" Snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 
 "" Color
 Plug 'tomasr/molokai'
@@ -88,6 +88,8 @@ Plug 'gorodinskiy/vim-coloresque'
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 
+" Start page for vim 
+Plug 'mhinz/vim-startify'
 
 "*****************************************************************************
 "*****************************************************************************
@@ -103,6 +105,14 @@ Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:deoplete#enable_at_startup = 1
 
 let g:deoplete#sources#go#gocode_binary = '/Users/a.alaribe/go/bin/gocode'
+
+imap <expr><TAB>
+   \ neosnippet#expandable_or_jumpable() ?
+   \ "\<Plug>(neosnippet_expand_or_jump)" :
+   \ pumvisible() ? "\<C-y>" :
+   \ <SID>check_back_space() ? "\<TAB>" :
+   \ deoplete#mappings#manual_complete()
+
 
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -245,6 +255,30 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+"Personal additions
+"delete should not cut data. <leader>d can be used the way d was used previously
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+:cmap Q q!
+
+com! FormatJSON %!python -m json.tool
+com! J %!jq '.'
+
+" set foldmethod=indent
+set foldmethod=syntax
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+set lazyredraw
+set regexpengine=1
+
+
+
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -370,10 +404,10 @@ nnoremap <silent> <leader>e :FZF -m<CR>
 nmap <leader>y :History:<CR>
 
 " snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+:" let g:UltiSnipsEditSplit="vertical"
 
 " ale
 let g:ale_linters = {}
@@ -569,3 +603,15 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+
+" startify 
+"
+autocmd VimEnter *
+            \  if !argc()
+            \  |  Startify
+            \  |  NERDTree
+            \  |  wincmd w
+            \  | endif
+
+let NERDTreeHijackNetrw = 0
