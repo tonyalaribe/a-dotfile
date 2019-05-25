@@ -61,12 +61,15 @@ Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
+Plug 'sebdah/vim-delve'
+
 "" Snippets
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 
 "" Color
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
+Plug 'ratazzi/blackboard.vim'
 
 "*****************************************************************************
 "" Custom bundles
@@ -103,16 +106,7 @@ else
 endif
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 let g:deoplete#enable_at_startup = 1
-
 let g:deoplete#sources#go#gocode_binary = '/Users/a.alaribe/go/bin/gocode'
-
-imap <expr><TAB>
-   \ neosnippet#expandable_or_jumpable() ?
-   \ "\<Plug>(neosnippet_expand_or_jump)" :
-   \ pumvisible() ? "\<C-y>" :
-   \ <SID>check_back_space() ? "\<TAB>" :
-   \ deoplete#mappings#manual_complete()
-
 
 "" Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
@@ -180,7 +174,8 @@ set ruler
 set number
 
 let no_buffers_menu=1
-silent! colorscheme molokai
+" silent! colorscheme molokai
+silent! colorscheme blackboard
 
 set mousemodel=popup
 set t_Co=256
