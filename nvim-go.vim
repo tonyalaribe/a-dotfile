@@ -92,6 +92,15 @@ Plug 'gorodinskiy/vim-coloresque'
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
 
+" rust
+" Vim racer
+Plug 'racer-rust/vim-racer'
+
+" Rust.vim
+Plug 'rust-lang/rust.vim'
+
+
+
 " Start page for vim 
 Plug 'mhinz/vim-startify'
 
@@ -197,7 +206,7 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-  
+
 endif
 
 
@@ -295,6 +304,14 @@ let Grep_Skip_Dirs = '.git node_modules'
 
 " terminal emulation
 nnoremap <silent> <leader>sh :terminal<CR>
+
+
+"*****************************************************************************
+"" Commands
+"*****************************************************************************
+" remove trailing whitespaces
+command! FixWhitespace :%s/\s\+$//e
+
 
 "*****************************************************************************
 "" Functions
@@ -550,6 +567,14 @@ augroup vimrc-javascript
   autocmd!
   autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
 augroup END
+
+
+" rust
+" Vim racer
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 
 "*****************************************************************************
