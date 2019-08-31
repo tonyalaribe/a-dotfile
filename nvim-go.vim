@@ -153,6 +153,10 @@ set expandtab
 "" Enable hidden buffers
 set hidden
 
+set path+=**
+set wildmenu 
+set wildignore+=**/node_modules/**
+
 "" Searching
 set hlsearch
 set incsearch
@@ -398,10 +402,10 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
-if executable('ag')
-  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
+" if executable('ag')
+"   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+"   set grepprg=ag\ --nogroup\ --nocolor
+" endif
 
 " ripgrep
 if executable('rg')
@@ -576,6 +580,9 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'xclip -selection clipboard'
+let g:racer_experimental_completer = 1
 
 "*****************************************************************************
 "*****************************************************************************
@@ -636,3 +643,54 @@ autocmd VimEnter *
             \  | endif
 
 let NERDTreeHijackNetrw = 0
+
+
+" Prettier config
+" max line length that prettier will wrap on
+" Prettier default: 80
+let g:prettier#config#print_width = 80
+
+" number of spaces per indentation level
+" Prettier default: 2
+let g:prettier#config#tab_width = 2
+
+" use tabs over spaces
+" Prettier default: false
+let g:prettier#config#use_tabs = 'false'
+
+" print semicolons
+" Prettier default: true
+let g:prettier#config#semi = 'true'
+
+" single quotes over double quotes
+" Prettier default: false
+let g:prettier#config#single_quote = 'false'
+
+" print spaces between brackets
+" Prettier default: true
+let g:prettier#config#bracket_spacing = 'true'
+
+" put > on the last line instead of new line
+" Prettier default: false
+let g:prettier#config#jsx_bracket_same_line = 'false'
+
+" avoid|always
+" Prettier default: avoid
+let g:prettier#config#arrow_parens = 'avoid'
+
+" none|es5|all
+" Prettier default: none
+let g:prettier#config#trailing_comma = 'none'
+
+" flow|babylon|typescript|css|less|scss|json|graphql|markdown
+" Prettier default: babylon
+let g:prettier#config#parser = 'babylon'
+
+" cli-override|file-override|prefer-file
+let g:prettier#config#config_precedence = 'prefer-file'
+
+" always|never|preserve
+let g:prettier#config#prose_wrap = 'preserve'
+
+" css|strict|ignore
+let g:prettier#config#html_whitespace_sensitivity = 'css'
