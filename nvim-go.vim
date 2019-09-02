@@ -108,6 +108,8 @@ Plug 'rust-lang/rust.vim'
 " Start page for vim 
 Plug 'mhinz/vim-startify'
 
+Plug 'vimwiki/vimwiki'
+
 "*****************************************************************************
 "*****************************************************************************
 "GOcode deoplete-go
@@ -698,3 +700,7 @@ let g:prettier#config#prose_wrap = 'preserve'
 
 " css|strict|ignore
 let g:prettier#config#html_whitespace_sensitivity = 'css'
+
+
+let g:vimwiki_list = [{'path': '~/notes/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
