@@ -45,6 +45,7 @@ Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'rhysd/vim-notes-cli'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -63,6 +64,9 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 Plug 'sebdah/vim-delve'
+
+
+" Plug 'AGhost-7/critiq.vim'
 
 "" Snippets
 " Plug 'SirVer/ultisnips'
