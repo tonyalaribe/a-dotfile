@@ -34,6 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+" Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'bronson/vim-trailing-whitespace'
@@ -46,6 +47,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'rhysd/vim-notes-cli'
+Plug 'airblade/vim-rooter'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -64,7 +66,6 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
 Plug 'sebdah/vim-delve'
-
 
 " Plug 'AGhost-7/critiq.vim'
 
