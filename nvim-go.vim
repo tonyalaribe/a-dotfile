@@ -433,7 +433,10 @@ nmap <leader>y :History:<CR>
 :" let g:UltiSnipsEditSplit="vertical"
 
 " ale
-let g:ale_linters = {}
+let g:ale_linters = {
+	\ 'go': ['gopls'],
+	\}
+
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -512,6 +515,9 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -524,6 +530,8 @@ let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
+let g:go_metalinter_command='golangci-lint'
+let g:go_metalinter_autosave = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
@@ -559,9 +567,19 @@ augroup go
 
 augroup END
 
+" Use gopls
+" Launch gopls when Go files are in use
+" let g:LanguageClient_serverCommands = {
+"        \ 'go': ['gopls']
+"        \ }
+" Run gofmt on save
+" autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+
+
 " ale
-:call extend(g:ale_linters, {
-    \"go": ['golint', 'go vet'], })
+" :call extend(g:ale_linters, {
+"     \"go": ['golint', 'go vet'], })
+
 
 
 " html
