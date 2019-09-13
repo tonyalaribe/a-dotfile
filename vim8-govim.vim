@@ -3,10 +3,10 @@
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
-let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "go,html,javascript"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+let g:vim_bootstrap_langs = "go,html,javascript,rust,typescript"
+let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
   if !executable("curl")
@@ -15,14 +15,14 @@ if !filereadable(vimplug_exists)
   endif
   echo "Installing Vim-Plug..."
   echo ""
-  silent exec "!\curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   let g:not_finish_vimplug = "yes"
 
   autocmd VimEnter * PlugInstall
 endif
 
 " Required:
-call plug#begin(expand('~/.config/nvim/plugged'))
+call plug#begin(expand('~/.vim/plugged'))
 
 "*****************************************************************************
 "" Plug install packages
@@ -34,10 +34,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-" Plug 'mhinz/vim-signify'
 Plug 'vim-scripts/grep.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
@@ -45,9 +43,6 @@ Plug 'Yggdroot/indentLine'
 Plug 'avelino/vim-bootstrap-updater'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'rhysd/vim-notes-cli'
-Plug 'airblade/vim-rooter'
 
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -65,37 +60,35 @@ Plug 'Shougo/vimproc.vim', {'do': g:make}
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
-Plug 'sebdah/vim-delve'
-
-" Plug 'AGhost-7/critiq.vim'
-
 "" Snippets
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "" Color
-" Plug 'tomasr/molokai'
-Plug 'ratazzi/blackboard.vim'
+Plug 'tomasr/molokai'
 
 "*****************************************************************************
 "" Custom bundles
 "*****************************************************************************
-Plug 'brooth/far.vim'
 
 " go
 "" Go Lang Bundle
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+" Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'govim/govim'
+
 
 " html
+"" HTML Bundle
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
-"Plug 'tpope/vim-haml'
-"Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-haml'
+Plug 'mattn/emmet-vim'
 
 
 " javascript
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax'
+
 
 " rust
 " Vim racer
@@ -105,29 +98,17 @@ Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 
 
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 
-" Start page for vim 
-Plug 'mhinz/vim-startify'
-
-Plug 'vimwiki/vimwiki'
 
 "*****************************************************************************
 "*****************************************************************************
-"GOcode deoplete-go
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '/Users/a.alaribe/go/bin/gocode'
 
 "" Include user's extra bundle
-if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-  source ~/.config/nvim/local_bundles.vim
+if filereadable(expand("~/.vimrc.local.bundles"))
+  source ~/.vimrc.local.bundles
 endif
 
 call plug#end()
@@ -143,7 +124,7 @@ filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
+set ttyfast
 
 "" Fix backspace indent
 set backspace=indent,eol,start
@@ -155,14 +136,10 @@ set shiftwidth=4
 set expandtab
 
 "" Map leader to ,
-" let mapleader=','
+let mapleader=','
 
 "" Enable hidden buffers
 set hidden
-
-set path+=**
-set wildmenu 
-set wildignore+=**/node_modules/**
 
 "" Searching
 set hlsearch
@@ -171,7 +148,6 @@ set ignorecase
 set smartcase
 
 set fileformats=unix,dos,mac
-set mouse=a
 
 if exists('$SHELL')
     set shell=$SHELL
@@ -180,13 +156,11 @@ else
 endif
 
 " session management
-let g:session_directory = "~/.config/nvim/session"
+let g:session_directory = "~/.vim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-let g:python2_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
@@ -195,8 +169,7 @@ set ruler
 set number
 
 let no_buffers_menu=1
-" silent! colorscheme molokai
-silent! colorscheme blackboard
+silent! colorscheme molokai
 
 set mousemodel=popup
 set t_Co=256
@@ -217,9 +190,21 @@ else
   let g:indentLine_char = '┆'
   let g:indentLine_faster = 1
 
-
+  
+  if $COLORTERM == 'gnome-terminal'
+    set term=gnome-256color
+  else
+    if $TERM == 'xterm'
+      set term=xterm-256color
+    endif
+  endif
+  
 endif
 
+
+if &term =~ '256color'
+  set t_ut=
+endif
 
 
 "" Disable the blinking cursor.
@@ -271,30 +256,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
-"Personal additions
-"delete should not cut data. <leader>d can be used the way d was used previously
-nnoremap x "_x
-nnoremap d "_d
-nnoremap D "_D
-vnoremap d "_d
-nnoremap <leader>d ""d
-nnoremap <leader>D ""D
-vnoremap <leader>d ""d
-:cmap Q q!
-
-com! FormatJSON %!python -m json.tool
-com! J %!jq '.'
-
-" set foldmethod=indent
-set foldmethod=syntax
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
-set lazyredraw
-set regexpengine=1
-
-
-
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
 let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -302,7 +263,7 @@ let g:NERDTreeSortOrder=['^__\.py$', '\/$', '*', '\.swp$', '\.bak$', '\~$']
 let g:NERDTreeShowBookmarks=1
 let g:nerdtree_tabs_focus_on_files=1
 let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
-let g:NERDTreeWinSize = 30
+let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
@@ -322,7 +283,6 @@ nnoremap <silent> <leader>sh :terminal<CR>
 "*****************************************************************************
 " remove trailing whitespaces
 command! FixWhitespace :%s/\s\+$//e
-
 
 "*****************************************************************************
 "" Functions
@@ -409,10 +369,10 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
 " The Silver Searcher
-" if executable('ag')
-"   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-"   set grepprg=ag\ --nogroup\ --nocolor
-" endif
+if executable('ag')
+  let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 " ripgrep
 if executable('rg')
@@ -428,16 +388,13 @@ nnoremap <silent> <leader>e :FZF -m<CR>
 nmap <leader>y :History:<CR>
 
 " snippets
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-:" let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+let g:UltiSnipsEditSplit="vertical"
 
 " ale
-let g:ale_linters = {
-	\ 'go': ['gopls'],
-	\}
-
+let g:ale_linters = {}
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -493,14 +450,20 @@ vnoremap K :m '<-2<CR>gv=gv
 "" Open current line on GitHub
 nnoremap <Leader>o :.Gbrowse<CR>
 
-
-com! FormatJSON %!python -m json.tool
-com! J %!jq '.'
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
 
 " go
+" go-vim 
+"
+nmap <silent> <buffer> <Leader>h : <C-u>call GOVIMHover()<CR>
+set timeoutlen=1000 ttimeoutlen=0
+nmap <silent> <buffer> <F2> :execute "GOVIMQuickfixDiagnostics" ^V| cw ^V| if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 ^V| :wincmd p ^V| endif<CR>
+imap <silent> <buffer> <F2> <C-O>:execute "GOVIMQuickfixDiagnostics" ^V| cw ^V| if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 ^V| :wincmd p ^V| endif<CR>
+" Note: ^V| is achieved by typing <C-v>v|
+
+
 " vim-go
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -516,9 +479,6 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -531,8 +491,6 @@ let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 let g:go_highlight_extra_types = 1
-let g:go_metalinter_command='golangci-lint'
-let g:go_metalinter_autosave = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
@@ -568,19 +526,9 @@ augroup go
 
 augroup END
 
-" Use gopls
-" Launch gopls when Go files are in use
-" let g:LanguageClient_serverCommands = {
-"        \ 'go': ['gopls']
-"        \ }
-" Run gofmt on save
-" autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
-
-
 " ale
 " :call extend(g:ale_linters, {
 "     \"go": ['golint', 'go vet'], })
-
 
 
 " html
@@ -605,16 +553,18 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
-let g:rustfmt_autosave = 1
-let g:rust_clip_command = 'xclip -selection clipboard'
-let g:racer_experimental_completer = 1
+
+" typescript
+let g:yats_host_keyword = 1
+
+
 
 "*****************************************************************************
 "*****************************************************************************
 
 "" Include user's local vim config
-if filereadable(expand("~/.config/nvim/local_init.vim"))
-  source ~/.config/nvim/local_init.vim
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
 endif
 
 "*****************************************************************************
@@ -656,70 +606,3 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
-
-
-" startify 
-"
-autocmd VimEnter *
-            \  if !argc()
-            \  |  Startify
-            \  |  NERDTree
-            \  |  wincmd w
-            \  | endif
-
-let NERDTreeHijackNetrw = 0
-
-
-" Prettier config
-" max line length that prettier will wrap on
-" Prettier default: 80
-let g:prettier#config#print_width = 80
-
-" number of spaces per indentation level
-" Prettier default: 2
-let g:prettier#config#tab_width = 2
-
-" use tabs over spaces
-" Prettier default: false
-let g:prettier#config#use_tabs = 'false'
-
-" print semicolons
-" Prettier default: true
-let g:prettier#config#semi = 'true'
-
-" single quotes over double quotes
-" Prettier default: false
-let g:prettier#config#single_quote = 'false'
-
-" print spaces between brackets
-" Prettier default: true
-let g:prettier#config#bracket_spacing = 'true'
-
-" put > on the last line instead of new line
-" Prettier default: false
-let g:prettier#config#jsx_bracket_same_line = 'false'
-
-" avoid|always
-" Prettier default: avoid
-let g:prettier#config#arrow_parens = 'avoid'
-
-" none|es5|all
-" Prettier default: none
-let g:prettier#config#trailing_comma = 'none'
-
-" flow|babylon|typescript|css|less|scss|json|graphql|markdown
-" Prettier default: babylon
-let g:prettier#config#parser = 'babylon'
-
-" cli-override|file-override|prefer-file
-let g:prettier#config#config_precedence = 'prefer-file'
-
-" always|never|preserve
-let g:prettier#config#prose_wrap = 'preserve'
-
-" css|strict|ignore
-let g:prettier#config#html_whitespace_sensitivity = 'css'
-
-
-let g:vimwiki_list = [{'path': '~/notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
