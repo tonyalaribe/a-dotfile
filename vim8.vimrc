@@ -367,5 +367,13 @@ augroup go
    au Filetype go  nmap <silent> <buffer> <F2> :execute "GOVIMQuickfixDiagnostics" | cw | if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 | :wincmd p | endif<CR>
    au Filetype go  imap <silent> <buffer> <F2> <C-O>:execute "GOVIMQuickfixDiagnostics" | cw | if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 | :wincmd p | endif<CR>
 augroup END
-set signcolumn=number
 
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+augroup completion_preview_close
+  autocmd!
+  if v:version > 703 || v:version == 703 && has('patch598')
+    autocmd CompleteDone * if !&previewwindow && &completeopt =~ 'preview' | silent! pclose | endif
+  endif
+augroup END
+set signcolumn=number
