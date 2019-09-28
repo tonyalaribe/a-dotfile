@@ -119,6 +119,10 @@ set number
 
 let no_buffers_menu=1
 silent! colorscheme molokai
+" transparent bg(use terminal bg color) 
+hi Normal guibg=NONE ctermbg=NONE
+
+
 set mousemodel=popup
 set t_Co=256
 " IndentLine
