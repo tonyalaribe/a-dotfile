@@ -55,6 +55,9 @@ Plug 'vimwiki/vimwiki'
 " buffer tabs
 Plug 'ap/vim-buftabline'
 
+Plug 'lifepillar/vim-mucomplete'
+
+Plug 'liuchengxu/vim-clap'
 call plug#end()
 
 " Required:
@@ -377,3 +380,12 @@ augroup completion_preview_close
   endif
 augroup END
 set signcolumn=number
+
+set completeopt+=menuone
+set completeopt+=noselect
+" set completeopt+=noinsert
+set shortmess+=c   " Shut off completion messages
+let g:mucomplete#enable_auto_at_startup = 1
+
+" For vim clap 
+nnoremap <C-C> <C-[>
