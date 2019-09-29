@@ -40,11 +40,12 @@ Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
+"
 " html
 Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css','js'] }
 Plug 'gorodinskiy/vim-coloresque', { 'for': ['html', 'css','js'] } " color preview
 " javascript
-Plug 'jelera/vim-javascript-syntax', { 'for': ['html', 'js'] } 
+Plug 'jelera/vim-javascript-syntax', { 'for': ['html', 'js'] }
 " rust
 Plug 'racer-rust/vim-racer', { 'for': ['rust'] }
 Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
@@ -57,10 +58,10 @@ Plug 'ap/vim-buftabline'
 
 Plug 'lifepillar/vim-mucomplete'
 
-Plug 'liuchengxu/vim-clap'
+" Plug 'liuchengxu/vim-clap'
 call plug#end()
 
-" Required:
+"" Required:
 filetype plugin indent on
 
 "" Encoding
@@ -136,7 +137,7 @@ if &term =~ '256color'
 endif
 
 silent! colorscheme molokai
-" transparent bg(use terminal bg color) 
+" transparent bg(use terminal bg color)
 hi Normal guibg=NONE ctermbg=NONE
 
 
@@ -158,7 +159,7 @@ set title
 set titleold="Terminal"
 set titlestring=%F
 
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ %=\ (%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)_
+" set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ %=\ (%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)_
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -169,7 +170,7 @@ nnoremap N Nzzzv
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
-"" no one is really happy until you have this shortcuts
+" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
@@ -179,6 +180,8 @@ cnoreabbrev wQ wq
 cnoreabbrev WQ wq
 cnoreabbrev W w
 cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev Qa! qa!
 cnoreabbrev Qall qall
 
 "Personal additions
@@ -197,11 +200,14 @@ com! J %!jq '.'
 " set foldmethod=indent
 set foldmethod=syntax
 set foldnestmax=10
-set nofoldenable
-set foldlevel=2
-set lazyredraw
-set regexpengine=1
+" set nofoldenable
+" set foldlevel=2
+set redrawtime=10000
+" set regexpengine=1
 
+set lazyredraw   " don't redraw everytime
+set synmaxcol=128  " avoid slow rendering for long lines
+syntax sync minlines=64  " faster syntax hl
 
 
 " terminal emulation
@@ -246,7 +252,7 @@ let g:netrw_browse_split=4  " open in prior window
 let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide = &wildignore
-" ret g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide+=netrw_gitignore#Hide()
 " " let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 " " check: |netrw-browse-maps| for more mappings
 
@@ -285,7 +291,7 @@ nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
 "" Close buffer
 noremap <leader>c :bd<CR>
-let g:buftabline_numbers=1 
+let g:buftabline_numbers=1
 let g:buftabline_indicators=1
 
 "" Vmap for maintain Visual Mode after shifting > and <
@@ -323,7 +329,8 @@ nmap <leader>y :History:<CR>
 " let g:ale_linters = {
 " 	\ 'go': ['gopls'],
 " 	\}
-
+"
+let g:polyglot_disabled = ['javascript', 'typescript', 'go']
 
 " Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
@@ -394,8 +401,8 @@ set completeopt+=noselect
 set shortmess+=c   " Shut off completion messages
 let g:mucomplete#enable_auto_at_startup = 1
 
-" For vim clap 
-nnoremap <C-C> <C-[>
+" For vim clap
+" nnoremap <C-C> <C-[>
 
 augroup netrw_remap
     autocmd!
@@ -404,5 +411,4 @@ augroup END
 function! RemapNetRWToNerdTree()
     nmap <buffer> o <CR>
     nmap <buffer> <C-r> <C-l>
-    " and any others...
 endfunction
