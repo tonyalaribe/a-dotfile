@@ -118,24 +118,27 @@ set ruler
 set number
 
 let no_buffers_menu=1
-silent! colorscheme molokai
-" transparent bg(use terminal bg color) 
-hi Normal guibg=NONE ctermbg=NONE
-
 
 set mousemodel=popup
 set t_Co=256
+
 " IndentLine
 let g:indentLine_enabled = 1
 let g:indentLine_concealcursor = 0
 let g:indentLine_char = '┆'
 let g:indentLine_faster = 1
+
 if $TERM == 'xterm'
   set term=xterm-256color
 endif
 if &term =~ '256color'
   set t_ut=
 endif
+
+silent! colorscheme molokai
+" transparent bg(use terminal bg color) 
+hi Normal guibg=NONE ctermbg=NONE
+
 
 
 "" Disable the blinking cursor.
