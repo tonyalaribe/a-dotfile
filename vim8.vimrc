@@ -393,3 +393,13 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 " For vim clap 
 nnoremap <C-C> <C-[>
+
+augroup netrw_remap
+    autocmd!
+    autocmd filetype netrw call RemapNetRWToNerdTree()
+augroup END
+function! RemapNetRWToNerdTree()
+    nmap <buffer> o <CR>
+    nmap <buffer> <C-r> <C-l>
+    " and any others...
+endfunction
