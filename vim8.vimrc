@@ -65,6 +65,9 @@ call plug#end()
 "" Required:
 filetype plugin indent on
 
+" swap directory 
+set directory^=$HOME/.vim/tmp//
+
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8

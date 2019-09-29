@@ -1,0 +1,191 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+$FZF_DEFAULT_COMMAND	nvim-go.vim	/^  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git\/*"'$/;"	v
+$FZF_DEFAULT_COMMAND	nvim-go.vim	/^let $FZF_DEFAULT_COMMAND =  "find * -path '*\/\\.*' -prune -o -path 'node_modules\/**' -prune -o -path 'target\/**' -prune -o -path 'dist\/**' -prune -o  -type f -print -o -type l -print 2> \/dev\/null"$/;"	v
+<	nvim-go.vim	/^vmap < <gv$/;"	m
+<C-P>	nvim-go.vim	/^cnoremap <C-P> <C-R>=expand("%:p:h") . "\/" <CR>$/;"	m
+<C-c>	nvim-go.vim	/^  vmap <C-c> :w !pbcopy<CR><CR>$/;"	m
+<C-h>	nvim-go.vim	/^noremap <C-h> <C-w>h$/;"	m
+<C-j>	nvim-go.vim	/^noremap <C-j> <C-w>j$/;"	m
+<C-k>	nvim-go.vim	/^noremap <C-k> <C-w>k$/;"	m
+<C-l>	nvim-go.vim	/^noremap <C-l> <C-w>l$/;"	m
+<C-x>	nvim-go.vim	/^  vmap <C-x> :!pbcopy<CR>$/;"	m
+<F2>	nvim-go.vim	/^nnoremap <silent> <F2> :NERDTreeFind<CR>$/;"	m
+<F3>	nvim-go.vim	/^nnoremap <silent> <F3> :NERDTreeToggle<CR>$/;"	m
+<F4>	nvim-go.vim	/^nmap <silent> <F4> :TagbarToggle<CR>$/;"	m
+<Leader>e	nvim-go.vim	/^noremap <Leader>e :e <C-R>=expand("%:p:h") . "\/" <CR>$/;"	m
+<Leader>ga	nvim-go.vim	/^noremap <Leader>ga :Gwrite<CR>$/;"	m
+<Leader>gb	nvim-go.vim	/^noremap <Leader>gb :Gblame<CR>$/;"	m
+<Leader>gc	nvim-go.vim	/^noremap <Leader>gc :Gcommit<CR>$/;"	m
+<Leader>gd	nvim-go.vim	/^noremap <Leader>gd :Gvdiff<CR>$/;"	m
+<Leader>gll	nvim-go.vim	/^noremap <Leader>gll :Gpull<CR>$/;"	m
+<Leader>gr	nvim-go.vim	/^noremap <Leader>gr :Gremove<CR>$/;"	m
+<Leader>gs	nvim-go.vim	/^noremap <Leader>gs :Gstatus<CR>$/;"	m
+<Leader>gsh	nvim-go.vim	/^noremap <Leader>gsh :Gpush<CR>$/;"	m
+<Leader>h	nvim-go.vim	/^noremap <Leader>h :<C-u>split<CR>$/;"	m
+<Leader>o	nvim-go.vim	/^nnoremap <Leader>o :.Gbrowse<CR>$/;"	m
+<Leader>te	nvim-go.vim	/^noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "\/" <CR>$/;"	m
+<Leader>v	nvim-go.vim	/^noremap <Leader>v :<C-u>vsplit<CR>$/;"	m
+<S-Tab>	nvim-go.vim	/^nnoremap <S-Tab> gT$/;"	m
+<S-t>	nvim-go.vim	/^nnoremap <silent> <S-t> :tabnew<CR>$/;"	m
+<Tab>	nvim-go.vim	/^nnoremap <Tab> gt$/;"	m
+<leader>.	nvim-go.vim	/^nnoremap <leader>. :lcd %:p:h<CR>$/;"	m
+<leader><space>	nvim-go.vim	/^nnoremap <silent> <leader><space> :noh<cr>$/;"	m
+<leader>D	nvim-go.vim	/^nnoremap <leader>D ""D$/;"	m
+<leader>b	nvim-go.vim	/^nnoremap <silent> <leader>b :Buffers<CR>$/;"	m
+<leader>c	nvim-go.vim	/^noremap <leader>c :bd<CR>$/;"	m
+<leader>d	nvim-go.vim	/^nnoremap <leader>d ""d$/;"	m
+<leader>d	nvim-go.vim	/^vnoremap <leader>d ""d$/;"	m
+<leader>e	nvim-go.vim	/^nnoremap <silent> <leader>e :FZF -m<CR>$/;"	m
+<leader>f	nvim-go.vim	/^nnoremap <silent> <leader>f :Rgrep<CR>$/;"	m
+<leader>p	nvim-go.vim	/^noremap <leader>p "+gP<CR>$/;"	m
+<leader>q	nvim-go.vim	/^noremap <leader>q :bp<CR>$/;"	m
+<leader>sc	nvim-go.vim	/^nnoremap <leader>sc :CloseSession<CR>$/;"	m
+<leader>sd	nvim-go.vim	/^nnoremap <leader>sd :DeleteSession<CR>$/;"	m
+<leader>sh	nvim-go.vim	/^nnoremap <silent> <leader>sh :terminal<CR>$/;"	m
+<leader>so	nvim-go.vim	/^nnoremap <leader>so :OpenSession<Space>$/;"	m
+<leader>ss	nvim-go.vim	/^nnoremap <leader>ss :SaveSession<Space>$/;"	m
+<leader>w	nvim-go.vim	/^noremap <leader>w :bn<CR>$/;"	m
+<leader>x	nvim-go.vim	/^noremap <leader>x :bn<CR>$/;"	m
+<leader>y	nvim-go.vim	/^nmap <leader>y :History:<CR>$/;"	m
+<leader>z	nvim-go.vim	/^noremap <leader>z :bp<CR>$/;"	m
+>	nvim-go.vim	/^vmap > >gv$/;"	m
+D	nvim-go.vim	/^nnoremap D "_D$/;"	m
+Find	nvim-go.vim	/^  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git\/*" --color "always" '.shellescape(<q-args>).'| tr -d "\\017"', 1, <bang>0)$/;"	c
+FixWhitespace	nvim-go.vim	/^command! FixWhitespace :%s\/\\s\\+$\/\/e$/;"	c
+FormatJSON	nvim-go.vim	/^com! FormatJSON %!python -m json.tool$/;"	c
+Grep_Default_Options	nvim-go.vim	/^let Grep_Default_Options = '-IR'$/;"	v
+Grep_Skip_Dirs	nvim-go.vim	/^let Grep_Skip_Dirs = '.git node_modules'$/;"	v
+Grep_Skip_Files	nvim-go.vim	/^let Grep_Skip_Files = '*.log *.db'$/;"	v
+J	nvim-go.vim	/^com! J %!jq '.'$/;"	c
+J	nvim-go.vim	/^vnoremap J :m '>+1<CR>gv=gv$/;"	m
+K	nvim-go.vim	/^vnoremap K :m '<-2<CR>gv=gv$/;"	m
+N	nvim-go.vim	/^nnoremap N Nzzzv$/;"	m
+NERDTreeHijackNetrw	nvim-go.vim	/^let NERDTreeHijackNetrw = 0$/;"	v
+Q	nvim-go.vim	/^cnoreabbrev Q q$/;"	m
+Q!	nvim-go.vim	/^cnoreabbrev Q! q!$/;"	m
+Qall	nvim-go.vim	/^cnoreabbrev Qall qall$/;"	m
+Qall!	nvim-go.vim	/^cnoreabbrev Qall! qall!$/;"	m
+W	nvim-go.vim	/^cnoreabbrev W w$/;"	m
+W!	nvim-go.vim	/^cnoreabbrev W! w!$/;"	m
+WQ	nvim-go.vim	/^cnoreabbrev WQ wq$/;"	m
+Wa	nvim-go.vim	/^cnoreabbrev Wa wa$/;"	m
+Wq	nvim-go.vim	/^cnoreabbrev Wq wq$/;"	m
+XX	nvim-go.vim	/^noremap XX "+x<CR>$/;"	m
+YY	nvim-go.vim	/^noremap YY "+y<CR>$/;"	m
+build_go_files	nvim-go.vim	/^function! s:build_go_files()$/;"	f
+completion_preview_close	nvim-go.vim	/^augroup completion_preview_close$/;"	a
+d	nvim-go.vim	/^nnoremap d "_d$/;"	m
+d	nvim-go.vim	/^vnoremap d "_d$/;"	m
+g:CSApprox_loaded	nvim-go.vim	/^  let g:CSApprox_loaded = 1$/;"	v
+g:NERDTreeChDirMode	nvim-go.vim	/^let g:NERDTreeChDirMode=2$/;"	v
+g:NERDTreeIgnore	nvim-go.vim	/^let g:NERDTreeIgnore=['\\.rbc$', '\\~$', '\\.pyc$', '\\.db$', '\\.sqlite$', '__pycache__']$/;"	v
+g:NERDTreeMapOpenInTabSilent	nvim-go.vim	/^let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'$/;"	v
+g:NERDTreeShowBookmarks	nvim-go.vim	/^let g:NERDTreeShowBookmarks=1$/;"	v
+g:NERDTreeSortOrder	nvim-go.vim	/^let g:NERDTreeSortOrder=['^__\\.py$', '\\\/$', '*', '\\.swp$', '\\.bak$', '\\~$']$/;"	v
+g:NERDTreeWinSize	nvim-go.vim	/^let g:NERDTreeWinSize = 30$/;"	v
+g:airline#extensions#ale#enabled	nvim-go.vim	/^let g:airline#extensions#ale#enabled = 1$/;"	v
+g:airline#extensions#branch#enabled	nvim-go.vim	/^let g:airline#extensions#branch#enabled = 1$/;"	v
+g:airline#extensions#branch#prefix	nvim-go.vim	/^  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇$/;"	v
+g:airline#extensions#linecolumn#prefix	nvim-go.vim	/^  let g:airline#extensions#linecolumn#prefix = '¶'$/;"	v
+g:airline#extensions#paste#symbol	nvim-go.vim	/^  let g:airline#extensions#paste#symbol      = 'ρ'$/;"	v
+g:airline#extensions#readonly#symbol	nvim-go.vim	/^  let g:airline#extensions#readonly#symbol   = '⊘'$/;"	v
+g:airline#extensions#tabline#enabled	nvim-go.vim	/^let g:airline#extensions#tabline#enabled = 1$/;"	v
+g:airline#extensions#tabline#left_alt_sep	nvim-go.vim	/^  let g:airline#extensions#tabline#left_alt_sep = '|'$/;"	v
+g:airline#extensions#tabline#left_alt_sep	nvim-go.vim	/^  let g:airline#extensions#tabline#left_alt_sep = ''$/;"	v
+g:airline#extensions#tabline#left_sep	nvim-go.vim	/^  let g:airline#extensions#tabline#left_sep = ' '$/;"	v
+g:airline#extensions#tabline#left_sep	nvim-go.vim	/^  let g:airline#extensions#tabline#left_sep = ''$/;"	v
+g:airline#extensions#tagbar#enabled	nvim-go.vim	/^let g:airline#extensions#tagbar#enabled = 1$/;"	v
+g:airline_left_alt_sep	nvim-go.vim	/^  let g:airline_left_alt_sep      = '»'$/;"	v
+g:airline_left_alt_sep	nvim-go.vim	/^  let g:airline_left_alt_sep = ''$/;"	v
+g:airline_left_sep	nvim-go.vim	/^  let g:airline_left_sep          = '▶'$/;"	v
+g:airline_left_sep	nvim-go.vim	/^  let g:airline_left_sep = ''$/;"	v
+g:airline_right_alt_sep	nvim-go.vim	/^  let g:airline_right_alt_sep     = '«'$/;"	v
+g:airline_right_alt_sep	nvim-go.vim	/^  let g:airline_right_alt_sep = ''$/;"	v
+g:airline_right_sep	nvim-go.vim	/^  let g:airline_right_sep         = '◀'$/;"	v
+g:airline_right_sep	nvim-go.vim	/^  let g:airline_right_sep = ''$/;"	v
+g:airline_skip_empty_sections	nvim-go.vim	/^let g:airline_skip_empty_sections = 1$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols = {}$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.branch    = '⎇'$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.branch = ''$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.linenr    = '␊'$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.linenr = ''$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.paste     = 'Þ'$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.paste     = 'ρ'$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.paste     = '∥'$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.readonly = ''$/;"	v
+g:airline_symbols	nvim-go.vim	/^  let g:airline_symbols.whitespace = 'Ξ'$/;"	v
+g:airline_theme	nvim-go.vim	/^let g:airline_theme = 'powerlineish'$/;"	v
+g:ale_linters	nvim-go.vim	/^let g:ale_linters = {$/;"	v
+g:deoplete#enable_at_startup	nvim-go.vim	/^let g:deoplete#enable_at_startup = 1$/;"	v
+g:deoplete#sources#go#gocode_binary	nvim-go.vim	/^let g:deoplete#sources#go#gocode_binary = '\/Users\/a.alaribe\/go\/bin\/gocode'$/;"	v
+g:go_def_mode	nvim-go.vim	/^let g:go_def_mode='gopls'$/;"	v
+g:go_fmt_command	nvim-go.vim	/^let g:go_fmt_command = "goimports"$/;"	v
+g:go_fmt_fail_silently	nvim-go.vim	/^let g:go_fmt_fail_silently = 1$/;"	v
+g:go_highlight_array_whitespace_error	nvim-go.vim	/^let g:go_highlight_array_whitespace_error = 0$/;"	v
+g:go_highlight_build_constraints	nvim-go.vim	/^let g:go_highlight_build_constraints = 1$/;"	v
+g:go_highlight_extra_types	nvim-go.vim	/^let g:go_highlight_extra_types = 1$/;"	v
+g:go_highlight_fields	nvim-go.vim	/^let g:go_highlight_fields = 1$/;"	v
+g:go_highlight_functions	nvim-go.vim	/^let g:go_highlight_functions = 1$/;"	v
+g:go_highlight_generate_tags	nvim-go.vim	/^let g:go_highlight_generate_tags = 1$/;"	v
+g:go_highlight_methods	nvim-go.vim	/^let g:go_highlight_methods = 1$/;"	v
+g:go_highlight_operators	nvim-go.vim	/^let g:go_highlight_operators = 1$/;"	v
+g:go_highlight_space_tab_error	nvim-go.vim	/^let g:go_highlight_space_tab_error = 0$/;"	v
+g:go_highlight_structs	nvim-go.vim	/^let g:go_highlight_structs = 1$/;"	v
+g:go_highlight_trailing_whitespace_error	nvim-go.vim	/^let g:go_highlight_trailing_whitespace_error = 0$/;"	v
+g:go_highlight_types	nvim-go.vim	/^let g:go_highlight_types = 1$/;"	v
+g:go_info_mode	nvim-go.vim	/^let g:go_info_mode='gopls'$/;"	v
+g:go_list_type	nvim-go.vim	/^let g:go_list_type = "quickfix"$/;"	v
+g:go_metalinter_autosave	nvim-go.vim	/^let g:go_metalinter_autosave = 1$/;"	v
+g:go_metalinter_command	nvim-go.vim	/^let g:go_metalinter_command='golangci-lint'$/;"	v
+g:indentLine_char	nvim-go.vim	/^  let g:indentLine_char = '┆'$/;"	v
+g:indentLine_concealcursor	nvim-go.vim	/^  let g:indentLine_concealcursor = 0$/;"	v
+g:indentLine_enabled	nvim-go.vim	/^  let g:indentLine_enabled = 1$/;"	v
+g:indentLine_faster	nvim-go.vim	/^  let g:indentLine_faster = 1$/;"	v
+g:javascript_enable_domhtmlcss	nvim-go.vim	/^let g:javascript_enable_domhtmlcss = 1$/;"	v
+g:make	nvim-go.vim	/^        let g:make = 'make'$/;"	v
+g:make	nvim-go.vim	/^let g:make = 'gmake'$/;"	v
+g:nerdtree_tabs_focus_on_files	nvim-go.vim	/^let g:nerdtree_tabs_focus_on_files=1$/;"	v
+g:not_finish_vimplug	nvim-go.vim	/^  let g:not_finish_vimplug = "yes"$/;"	v
+g:prettier#config#arrow_parens	nvim-go.vim	/^let g:prettier#config#arrow_parens = 'avoid'$/;"	v
+g:prettier#config#bracket_spacing	nvim-go.vim	/^let g:prettier#config#bracket_spacing = 'true'$/;"	v
+g:prettier#config#config_precedence	nvim-go.vim	/^let g:prettier#config#config_precedence = 'prefer-file'$/;"	v
+g:prettier#config#html_whitespace_sensitivity	nvim-go.vim	/^let g:prettier#config#html_whitespace_sensitivity = 'css'$/;"	v
+g:prettier#config#jsx_bracket_same_line	nvim-go.vim	/^let g:prettier#config#jsx_bracket_same_line = 'false'$/;"	v
+g:prettier#config#parser	nvim-go.vim	/^let g:prettier#config#parser = 'babylon'$/;"	v
+g:prettier#config#print_width	nvim-go.vim	/^let g:prettier#config#print_width = 80$/;"	v
+g:prettier#config#prose_wrap	nvim-go.vim	/^let g:prettier#config#prose_wrap = 'preserve'$/;"	v
+g:prettier#config#semi	nvim-go.vim	/^let g:prettier#config#semi = 'true'$/;"	v
+g:prettier#config#single_quote	nvim-go.vim	/^let g:prettier#config#single_quote = 'false'$/;"	v
+g:prettier#config#tab_width	nvim-go.vim	/^let g:prettier#config#tab_width = 2$/;"	v
+g:prettier#config#trailing_comma	nvim-go.vim	/^let g:prettier#config#trailing_comma = 'none'$/;"	v
+g:prettier#config#use_tabs	nvim-go.vim	/^let g:prettier#config#use_tabs = 'false'$/;"	v
+g:python2_host_prog	nvim-go.vim	/^let g:python2_host_prog = '\/usr\/bin\/python'$/;"	v
+g:python3_host_prog	nvim-go.vim	/^let g:python3_host_prog = '\/usr\/local\/bin\/python3'$/;"	v
+g:racer_experimental_completer	nvim-go.vim	/^let g:racer_experimental_completer = 1$/;"	v
+g:rust_clip_command	nvim-go.vim	/^let g:rust_clip_command = 'xclip -selection clipboard'$/;"	v
+g:rustfmt_autosave	nvim-go.vim	/^let g:rustfmt_autosave = 1$/;"	v
+g:session_autoload	nvim-go.vim	/^let g:session_autoload = "no"$/;"	v
+g:session_autosave	nvim-go.vim	/^let g:session_autosave = "no"$/;"	v
+g:session_command_aliases	nvim-go.vim	/^let g:session_command_aliases = 1$/;"	v
+g:session_directory	nvim-go.vim	/^let g:session_directory = "~\/.config\/nvim\/session"$/;"	v
+g:tagbar_autofocus	nvim-go.vim	/^let g:tagbar_autofocus = 1$/;"	v
+g:vim_bootstrap_editor	nvim-go.vim	/^let g:vim_bootstrap_editor = "nvim"				" nvim or vim$/;"	v
+g:vim_bootstrap_langs	nvim-go.vim	/^let g:vim_bootstrap_langs = "go,html,javascript"$/;"	v
+g:vimwiki_list	nvim-go.vim	/^let g:vimwiki_list = [{'path': '~\/notes\/',$/;"	v
+go	nvim-go.vim	/^augroup go$/;"	a
+n	nvim-go.vim	/^nnoremap n nzzzv$/;"	m
+no_buffers_menu	nvim-go.vim	/^let no_buffers_menu=1$/;"	v
+setupWrapping	nvim-go.vim	/^  function s:setupWrapping()$/;"	f
+vimplug_exists	nvim-go.vim	/^let vimplug_exists=expand('~\/.config\/nvim\/autoload\/plug.vim')$/;"	v
+vimrc	nvim-go.vim	/^augroup vimrc-javascript$/;"	a
+vimrc	nvim-go.vim	/^augroup vimrc-make-cmake$/;"	a
+vimrc	nvim-go.vim	/^augroup vimrc-remember-cursor-position$/;"	a
+vimrc	nvim-go.vim	/^augroup vimrc-sync-fromstart$/;"	a
+vimrc	nvim-go.vim	/^augroup vimrc-wrapping$/;"	a
+wQ	nvim-go.vim	/^cnoreabbrev wQ wq$/;"	m
+x	nvim-go.vim	/^nnoremap x "_x$/;"	m
