@@ -57,7 +57,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'ap/vim-buftabline'
 
 Plug 'lifepillar/vim-mucomplete'
-
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'ternjs/tern_for_vim'
 " Plug 'liuchengxu/vim-clap'
 call plug#end()
 
@@ -159,7 +160,8 @@ set title
 set titleold="Terminal"
 set titlestring=%F
 
-" set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ %=\ (%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)_
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ %=\ (%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)_
+set statusline+=%{gutentags#statusline()}
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -379,6 +381,25 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
+
 augroup go
    au Filetype go  nmap <silent> <buffer> <Leader>h : <C-u>call GOVIMHover()<CR>
    au Filetype go  nmap <silent> <buffer> <F2> :execute "GOVIMQuickfixDiagnostics" | cw | if len(getqflist()) > 0 && getwininfo(win_getid())[0].quickfix == 1 | :wincmd p | endif<CR>
@@ -412,3 +433,5 @@ function! RemapNetRWToNerdTree()
     nmap <buffer> o <CR>
     nmap <buffer> <C-r> <C-l>
 endfunction
+
+
