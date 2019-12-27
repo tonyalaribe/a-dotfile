@@ -205,7 +205,7 @@ com! J %!jq '.'
 " set foldmethod=indent
 set foldmethod=syntax
 set foldnestmax=10
-" set nofoldenable
+set nofoldenable
 " set foldlevel=2
 set redrawtime=10000
 " set regexpengine=1
