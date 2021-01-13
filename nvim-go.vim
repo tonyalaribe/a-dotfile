@@ -15,12 +15,19 @@ Plug 'mhinz/vim-startify'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-lua/lsp-status.nvim'
 call plug#end()
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
+local completion = require('completion')
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
 local on_attach = function(client, bufnr)
-  require('completion').on_attach(client, bufnr)
+  completion.on_attach(client, bufnr)
+  lsp_status.on_attach(client, bufnr)
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -70,7 +77,7 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "rust_analyzer", "tsserver", "gopls" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = lsp_status.capabilities }
 end
 
 
@@ -104,20 +111,15 @@ filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
-
 "" Fix backspace indent
 set backspace=indent,eol,start
-
 "" Tabs. May be overridden by autocmd rules
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set expandtab
-
 "" Enable hidden buffers
 set hidden
-
 set path+=**
 set wildmenu 
 set wildignore+=**/node_modules/**
@@ -127,23 +129,14 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
 set fileformats=unix,dos,mac
 set mouse=a
-
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
-if exists('$SHELL')
-    set shell=$SHELL
-else
-    set shell=/bin/sh
-endif
-
+set shell=$SHELL
 
 let g:python2_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
-
 
 "" Visual Settings
 syntax on
@@ -151,11 +144,25 @@ set ruler
 set number
 
 silent! colorscheme blackboard
+highlight Folded ctermbg=Gray ctermfg=Black
 
 set mousemodel=popup
 set t_Co=256
 set guioptions=egmrti
 set gfn=Monospace\ 10
+set signcolumn=number
+set clipboard=unnamed
+
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+  return ''
+endfunction
+
+set statusline=
+set statusline+=%{LspStatus()}
 
 " startify 
 autocmd VimEnter * if !argc()|  Startify |  NERDTree |  wincmd w | endif
