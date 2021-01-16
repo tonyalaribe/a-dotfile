@@ -16,6 +16,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-lua/lsp-status.nvim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 lua << EOF
@@ -93,7 +94,30 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
+
+function goimports(timeoutms)
+    local context = { source = { organizeImports = true } }
+    vim.validate { context = { context, "t", true } }
+
+    local params = vim.lsp.util.make_range_params()
+    params.context = context
+
+    local method = "textDocument/codeAction"
+    local resp = vim.lsp.buf_request_sync(0, method, params, timeoutms)
+    if resp and resp[1] then
+      local result = resp[1].result
+      if result and result[1] then
+        local edit = result[1].edit
+        vim.lsp.util.apply_workspace_edit(edit)
+      end
+    end
+
+    vim.lsp.buf.formatting()
+end
+
 EOF
+autocmd BufWritePre *.go lua goimports(1000)
+
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
