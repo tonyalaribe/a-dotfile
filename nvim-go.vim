@@ -17,13 +17,22 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'tpope/vim-commentary'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
+Plug 'junegunn/fzf.vim'  " to enable preview (optional)
+Plug 'ojroques/nvim-lspfuzzy'
+Plug 'datwaft/bubbly.nvim'
 call plug#end()
+
 
 lua << EOF
 local nvim_lsp = require('lspconfig')
 local completion = require('completion')
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
+
 
 local on_attach = function(client, bufnr)
   completion.on_attach(client, bufnr)
@@ -82,7 +91,7 @@ for _, lsp in ipairs(servers) do
 end
 
 
-
+require('lspfuzzy').setup {}
 -- require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 
 require'nvim-treesitter.configs'.setup {
@@ -177,6 +186,42 @@ set gfn=Monospace\ 10
 set signcolumn=number
 set clipboard=unnamed
 
+"*****************************************************************************
+"" Abbreviations
+"*****************************************************************************
+"" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+
+"Personal additions
+"delete should not cut data. <leader>d can be used the way d was used previously
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+:cmap Q q!
+
+" Tagbar
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+"" Vmap for maintain Visual Mode after shifting > and <
+vmap < <gv
+vmap > >gv
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
@@ -184,6 +229,19 @@ function! LspStatus() abort
   endif
   return ''
 endfunction
+
+
+"" fzf.vim
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>f :FZF -m<CR>
+"Recovery commands from history through FZF
+nmap <leader>y :History:<CR>
 
 set statusline=
 set statusline+=%{LspStatus()}
