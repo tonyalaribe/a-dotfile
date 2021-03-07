@@ -19,11 +19,12 @@ Plug 'nvim-lua/lsp-status.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
-Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
 Plug 'junegunn/fzf.vim'  " to enable preview (optional)
 Plug 'ojroques/nvim-lspfuzzy'
 Plug 'datwaft/bubbly.nvim'
+Plug 'sbdchd/neoformat'
+Plug 'wfxr/minimap.vim'
 call plug#end()
 
 
@@ -70,30 +71,28 @@ local on_attach = function(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    require('lspconfig').util.nvim_multiline_command [[
-      :hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      :hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      :hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+    vim.api.nvim_exec([[
+      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
       augroup lsp_document_highlight
-        autocmd!
+        autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
-    ]]
+    ]], false)
   end
 end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver", "gopls" }
+local servers = { "rust_analyzer", "tsserver", "gopls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = lsp_status.capabilities }
 end
 
 
 require('lspfuzzy').setup {}
--- require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
-
 require'nvim-treesitter.configs'.setup {
   ensure_installed = 'all',
   highlight = {
@@ -125,7 +124,7 @@ function goimports(timeoutms)
 end
 
 EOF
-autocmd BufWritePre *.go lua goimports(1000)
+autocmd BufWritePre *.go lua goimports(100)
 
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -167,6 +166,7 @@ set mouse=a
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set shell=$SHELL
+set nofoldenable
 
 let g:python2_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
